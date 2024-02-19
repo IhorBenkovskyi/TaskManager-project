@@ -1,0 +1,58 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 94vh;
+}
+
+.myCalendar {
+    width: 250px;
+    height: 300px;
+    background-color: #f0f0f0;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar__logo {
+    text-align: center;
+    margin-left: 50px;
+    color: #27374d;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar__logo__icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.sidebar__menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 40px;
+}
+
+.sidebar__menu .item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 10px;
+    color: #27374d;
+    transition: 0.3s ease-in-out;
+}
+
+.sidebar__menu .item:hover {
+    background: #27374d;
+    color: #dde6ed;
+}

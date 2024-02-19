@@ -1,0 +1,13 @@
+.taskBoard {
+    display: flex;
+    gap: 20px;
+}
+
+.taskBoard__content {
+    display: flex;
+    flex: 1;
+    border-radius: 20px;
+    padding: 2rem;
+    background-color: #fff;
+    gap: 1.5rem;
+}
