@@ -27,3 +27,22 @@ h1 {
     text-decoration: none;
     transition: 0.3s ease-in-out;
 }
+
+.addTaskBtn:hover {
+    background-color: #1a2a3a;
+}
+
+.taskList {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #dde6ed;
+    border: 3px solid #27374d;
+    min-height: 220px;
+    max-height: 220px;
+    overflow-y: auto;
+}
