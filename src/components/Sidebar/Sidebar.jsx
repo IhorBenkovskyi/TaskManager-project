@@ -6,18 +6,24 @@ import React, { useState } from 'react';
 import './Sidebar.css';
 import { BiBookAlt, BiSolidReport, BiStats, BiTask } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
+import { atom, useAtom } from 'jotai';
 
 moment.locale('en-gb');
 
+export const selectedDateAtom = atom(new Date());
+
 const Sidebar = () => {
-    const [date, setDate] = useState(new Date());
+    const [selectedDate, setSelectedDate] = useAtom(selectedDateAtom);
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+    };
     return (
         <div className="sidebar">
             <div className="sidebar__logo">
                 <BiBookAlt className="sidebar__logo__icon" />
                 <h2>My ToDo</h2>
             </div>
-            <Calendar className="myCalendar" locale="en-GB" onChange={setDate} value={date} />
+            <Calendar className="myCalendar" locale="en-GB" onChange={handleDateChange} value={selectedDate} />
             <div className='sidebar__menu'>
                 <Link to='/alltasks' className='item'>
                     <BiSolidReport className='icon' />
