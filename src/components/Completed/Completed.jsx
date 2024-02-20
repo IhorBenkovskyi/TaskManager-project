@@ -1,12 +1,11 @@
 import React from 'react';
 import './Completed.css';
 
-
-const Completed = () => {
+const Completed = ({ completedCount, totalCount }) => {
     return (
         <div className='card'>
             <h2>Completed</h2>
-            <p>0/0</p>
+            <p>{completedCount}/{totalCount}</p>
         </div>
     );
 }

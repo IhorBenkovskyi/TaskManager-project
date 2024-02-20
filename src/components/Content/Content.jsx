@@ -36,21 +36,43 @@ const Content = () => {
         const updatedTaskList = taskList.filter(task => task.id !== id);
         setTaskList(updatedTaskList);
         localStorage.setItem('tasks', JSON.stringify(updatedTaskList));
+        localStorage.removeItem(`task_${id}_completed`);
     }
+
+    const toggleTaskStatus = (id, isCompleted) => {
+        const updatedTaskList = taskList.map(task => {
+            if (task.id === id) {
+                return { ...task, isCompleted };
+            }
+            return task;
+        });
+        setTaskList(updatedTaskList);
+        localStorage.setItem('tasks', JSON.stringify(updatedTaskList));
+    }
+
+    const completedTasks = taskList.filter(task => JSON.parse(localStorage.getItem(`task_${task.id}_completed`)));
+    const inProgressTasks = taskList.filter(task => !JSON.parse(localStorage.getItem(`task_${task.id}_completed`)));
 
     return (
         <div className="content">
             <h1>My Tasks</h1>
             <div className="cardItem">
                 <button className="addTaskBtn" onClick={openModal}>Add New Task</button>
-                <InProgress />
-                <Completed />
+                <InProgress inProgressCount={inProgressTasks.length} totalCount={taskList.length} />
+                <Completed completedCount={completedTasks.length} totalCount={taskList.length} />
             </div>
             <CreateTask isOpen={isModalOpen} onClose={closeModal} addTaskToList={addTaskToList}></CreateTask>
             <div className="taskList">
-                {taskList.map((task) => {
-                    return <TaskItem key={task.id} taskName={task.taskName} deadline={task.deadline} onDelete={() => deleteTask(task.id)} />
-                })}
+                {taskList.map((task) => (
+                    <TaskItem
+                        key={task.id}
+                        id={task.id}
+                        taskName={task.taskName}
+                        deadline={task.deadline}
+                        onDelete={deleteTask}
+                        onToggle={toggleTaskStatus}
+                    />
+                ))}
             </div>
         </div>
     );
