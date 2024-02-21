@@ -8,7 +8,7 @@ import TaskItem from "../TaskItem/TaskItem";
 import { useAtom } from 'jotai';
 import { selectedDateAtom } from '../Sidebar/Sidebar';
 import moment from 'moment';
-
+import emptyTasksImage from '../../assets/emptyTasksImage.png'
 
 const Content = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -66,19 +66,25 @@ const Content = () => {
                 <Completed completedCount={completedTasks.length} totalCount={tasksForSelectedDate.length} />
             </div>
             <CreateTask isOpen={isModalOpen} onClose={closeModal} addTaskToList={addTaskToList}></CreateTask>
-            <div className="taskList">
-                {tasksForSelectedDate.map((task) => (
-                    <TaskItem
-                        key={task.id}
-                        id={task.id}
-                        taskName={task.taskName}
-                        deadline={task.deadline}
-                        onDelete={deleteTask}
-                        onToggle={toggleTaskStatus}
-                        isCompleted={task.isCompleted}
-                    />
-                ))}
-            </div>
+            {tasksForSelectedDate.length === 0 ? (
+                <div className="emptyTasks">
+                    <img src={emptyTasksImage} alt="empty tasks" />
+                </div>
+            ) : (
+                <div className="taskList">
+                    {tasksForSelectedDate.map((task) => (
+                        <TaskItem
+                            key={task.id}
+                            id={task.id}
+                            taskName={task.taskName}
+                            deadline={task.deadline}
+                            onDelete={deleteTask}
+                            onToggle={toggleTaskStatus}
+                            isCompleted={task.isCompleted}
+                        />
+                    ))}
+                </div>
+            )}
         </div>
     );
 }
